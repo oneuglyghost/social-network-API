@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const thoughtSchema = new Schema({
   thoughtText: {
@@ -19,7 +19,7 @@ const thoughtSchema = new Schema({
   reactions: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Reaction'
+      ref: "Reaction"
     }
   ]
 }, {
@@ -30,7 +30,7 @@ const thoughtSchema = new Schema({
   id: false
 });
 
-thoughtSchema.virtual('reactionCount').get(function() {
+thoughtSchema.virtual("reactionCount").get(function() {
   return this.reactions.length;
 });
 
@@ -38,6 +38,6 @@ function formatDate(timestamp) {
   return new Date(timestamp).toLocaleDateString();
 }
 
-const Thought = model('Thought', thoughtSchema);
+const Thought = model("Thought", thoughtSchema);
 
 module.exports = Thought;

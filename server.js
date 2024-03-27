@@ -1,16 +1,20 @@
-
-const express =require("express");
-const mongoose = require("./config/connection");
+const express = require("express");
+const connect = require("./config/connection");
+const routes = require("./routes");
 
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-    res.send("Hello World");
-});
+// Connect to MongoDB
+connect();
 
+// Middleware for parsing JSON bodies
+app.use(express.json());
 
+// Use the routes for all API routes
+app.use(routes);
+
+// Start the server
 app.listen(PORT, () => {
-    console.log("Server running on port ${PORT}")
-})
+  console.log(`Server is running on port ${PORT}`);
+});
